@@ -53,6 +53,13 @@ if __name__ == '__main__':
     print(len(data_list))
     mongo_helper.data_handler("user", {"educationId": {"$in": [str(_[0]).strip() for _ in data_list]}})
     for orgin, new in [(str(_[0]).strip(), str(_[1]).strip()) for _ in data_list]:
-        print(mongo_helper.get_collection("user").find_one({"educationId": orgin}) is None)
-        # mongo_helper.get_collection("user").update_one({"educationId": orgin}, {"$set": {"educationId": new}})
+        # print(mongo_helper.get_collection("user").find_one({"educationId": orgin}) is None)
+        origin_data = mongo_helper.get_collection("user").find_one({"educationId": orgin})
+        new_data = mongo_helper.get_collection("user").find_one({"educationId": new})
+        if new_data is not None:
+            print("origin: ", origin_data)
+            print("new: ", new_data)
+        else:
+            mongo_helper.get_collection("user").update_one({"educationId": orgin}, {"$set": {"educationId": new}})
+        # print(mongo_helper.get_collection("user").find_one({"educationId": new}) is None)
 
