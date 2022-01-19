@@ -60,6 +60,7 @@ if __name__ == '__main__':
             print("origin: ", origin_data)
             print("new: ", new_data)
         else:
-            mongo_helper.get_collection("user").update_one({"educationId": orgin}, {"$set": {"educationId": new}})
+            pass
+            # mongo_helper.get_collection("user").update_one({"educationId": orgin}, {"$set": {"educationId": new}})
         # print(mongo_helper.get_collection("user").find_one({"educationId": new}) is None)
 
