@@ -66,9 +66,9 @@ def generate_lc_target_list(tag_map_file):
     exists_problems = set()
     for tag, problems in tag_map.items():
         for problem in problems:
-            if problem['name'] in exists_problems:
-                lc_target_list.append({'target_name': problem, 'cost_time': 0.5})
-            else:
+            if problem['name'] not in exists_problems:
+            #     lc_target_list.append({'target_name': problem, 'cost_time': 0.5})
+            # else:
                 lc_target_list.append({'target_name': problem, 'cost_time': 0.75})
                 exists_problems.add(problem['name'])
     return lc_target_list
@@ -90,8 +90,8 @@ def generate_xm_target_list(xm_file_path):
 
 if __name__ == '__main__':
 
-    s_time = datetime.datetime(year=2021, month=3, day=15)
-    e_time = datetime.datetime(year=2021, month=12, day=30)
+    s_time = datetime.datetime(year=2021, month=6, day=22)
+    e_time = datetime.datetime(year=2021, month=9, day=30)
     day_hours_array_1 = generate_day_hours_list(s_time, e_time, 2)
     day_hours_array_2 = generate_day_hours_list(s_time, e_time, 1.5)
 
